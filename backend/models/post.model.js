@@ -44,6 +44,10 @@ const postSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    votes: {
+      upvotes: { type: Number, required: true, default: 0 },
+      downvotes: { type: Number, required: true, default: 0 },
+    },
     comments: [commentSchema],
     numComments: {
       type: Number,

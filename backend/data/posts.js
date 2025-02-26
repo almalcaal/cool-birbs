@@ -12,7 +12,7 @@ const posts = [
       upvotes: 99,
       downvotes: 19,
     },
-    commentsCount: 92,
+    numComments: 92,
   },
   {
     title: "This bird is neato",
@@ -24,7 +24,7 @@ const posts = [
       upvotes: 23,
       downvotes: 8,
     },
-    commentsCount: 92,
+    numComments: 92,
   },
   {
     title: "Bird is eating some food...",
@@ -36,7 +36,7 @@ const posts = [
       upvotes: 46,
       downvotes: 2,
     },
-    commentsCount: 92,
+    numComments: 92,
   },
   {
     title: "Caww Caaaawww",
@@ -48,7 +48,7 @@ const posts = [
       upvotes: 78,
       downvotes: 3,
     },
-    commentsCount: 92,
+    numComments: 92,
   },
   {
     title: "Snow owl my man",
@@ -60,7 +60,7 @@ const posts = [
       upvotes: 87,
       downvotes: 5,
     },
-    commentsCount: 92,
+    numComments: 92,
   },
 ];
 

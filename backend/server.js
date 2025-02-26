@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import posts from "./data/posts.js";
 dotenv.config();
 import connectDB from "./config/db.js";
+import postRoutes from "./routes/post.routes.js";
 
 const app = express();
 // app.use(cors());
@@ -20,15 +21,7 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-app.get("/api/posts", (req, res) => {
-  res.json(posts);
-});
-
-app.get("/api/posts/:id", (req, res) => {
-  const post = posts.find((post) => post._id === Number(req.params.id));
-
-  res.json(post);
-});
+app.use("/api/posts", postRoutes);
 
 app.listen(PORT, () =>
   console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)
