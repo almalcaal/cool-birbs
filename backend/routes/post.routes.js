@@ -1,27 +1,9 @@
 import express from "express";
 const router = express.Router();
-import asyncHandler from "../middleware/asyncHandler.js";
-import Post from "../models/post.model.js";
+import { getPosts, getPostById } from "../controllers/post.controller.js";
 
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    const posts = await Post.find({});
-    res.json(posts);
-  })
-);
+router.route("/").get(getPosts);
 
-router.get(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const post = await Post.findById(req.params.id);
-    if (post) {
-      res.json(post);
-    } else {
-      res.status(404).json({ message: "Resource not found" });
-      throw new Error("Resource not found");
-    }
-  })
-);
+router.route("/:id").get(getPostById);
 
 export default router;
