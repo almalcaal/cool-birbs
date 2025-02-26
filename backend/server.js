@@ -5,6 +5,7 @@ import posts from "./data/posts.js";
 dotenv.config();
 import connectDB from "./config/db.js";
 import postRoutes from "./routes/post.routes.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
 // app.use(cors());
@@ -22,6 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/posts", postRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () =>
   console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)

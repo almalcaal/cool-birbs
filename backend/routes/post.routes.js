@@ -7,7 +7,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const posts = await Post.find({});
-    console.log(posts);
     res.json(posts);
   })
 );
@@ -18,10 +17,10 @@ router.get(
     const post = await Post.findById(req.params.id);
     if (post) {
       res.json(post);
-      return;
+    } else {
+      res.status(404).json({ message: "Resource not found" });
+      throw new Error("Resource not found");
     }
-
-    res.status(404).json({ message: "Resource not found" });
   })
 );
 
