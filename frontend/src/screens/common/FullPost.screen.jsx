@@ -4,6 +4,9 @@ import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import posts from "../../posts.js";
 import { useGetPostDetailsQuery } from "../../slices/postsApi.slice.js";
 
+import Message from "../../components/common/Message.component.jsx";
+import Loader from "../../components/common/Loader.component.jsx";
+
 const FullPostScreen = () => {
   const { id: postId } = useParams();
 
@@ -12,9 +15,11 @@ const FullPostScreen = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <Link to="/" className="btn btn-light my-3">

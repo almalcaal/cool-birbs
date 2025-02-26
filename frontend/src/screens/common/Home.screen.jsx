@@ -3,15 +3,20 @@ import Post from "../../components/feature-specific/Post.component.jsx";
 import posts from "../../posts.js";
 import { useGetPostsQuery } from "../../slices/postsApi.slice.js";
 
+import Loader from "../../components/common/Loader.component.jsx";
+import Message from "../../components/common/Message.component.jsx";
+
 const HomeScreen = () => {
   const { data: posts, isLoading, error } = useGetPostsQuery();
 
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <h1>Cool Birbs</h1>
