@@ -36,7 +36,7 @@ const FullPostScreen = () => {
               <h3>{fullPost.title}</h3>
             </ListGroup.Item>
 
-            <ListGroup.Item>{fullPost.body}</ListGroup.Item>
+            <ListGroup.Item>{fullPost.content}</ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>

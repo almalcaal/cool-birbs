@@ -3,7 +3,7 @@ import { apiSlice } from "./slices/api.slice.js";
 
 const store = configureStore({
   reducer: {
-    [apiSlice.reducer]: apiSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
