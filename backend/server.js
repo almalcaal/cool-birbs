@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import posts from "./data/posts.js";
 dotenv.config();
 import connectDB from "./config/db.js";
+import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 app.use(notFound);
