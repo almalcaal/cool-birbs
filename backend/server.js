@@ -9,6 +9,7 @@ import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import cookieParser from "cookie-parser";
+import uploadRoutes from "./routes/upload.routes.js";
 
 const app = express();
 // app.use(cors());
@@ -38,6 +39,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/upload", uploadRoutes);
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
