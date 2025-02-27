@@ -14,7 +14,7 @@ const authUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
 
-    res.status.json({
+    res.status(200).json({
       _id: user._id,
       username: user.username,
       email: user.email,
