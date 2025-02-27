@@ -15,12 +15,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import HomeScreen from "./screens/common/Home.screen.jsx";
 import FullPostScreen from "./screens/common/FullPost.screen.jsx";
+import LoginScreen from "./screens/common/Login.screen.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/posts/:id" element={<FullPostScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
     </Route>
   )
 );
