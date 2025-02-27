@@ -11,7 +11,6 @@ import { setCredentials } from "../../slices/auth.slice.js";
 import { toast } from "react-toastify";
 
 const LoginScreen = () => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,7 +34,7 @@ const LoginScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, username, password }).unwrap();
+      const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
@@ -56,17 +55,6 @@ const LoginScreen = () => {
             placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group className="my-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-
-          <Form.Control
-            type="username"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
