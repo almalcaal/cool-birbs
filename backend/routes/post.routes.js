@@ -1,4 +1,5 @@
 import express from "express";
+import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 import {
   getPosts,
@@ -6,7 +7,7 @@ import {
   createPost,
 } from "../controllers/post.controller.js";
 
-router.route("/").get(getPosts).post(createPost);
+router.route("/").get(getPosts).post(protect, createPost);
 
 router.route("/:id").get(getPostById);
 
