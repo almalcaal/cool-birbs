@@ -32,12 +32,6 @@ const createPost = asyncHandler(async (req, res) => {
   const post = await Post.create(req.body);
 
   res.status(201).json({ success: true, data: post });
-
-  if (activity) {
-    const alreadyReviewed = activity.reviews.find(
-      (r) => r.user.toString() === req.user._id.toString()
-    );
-  }
 });
 
 export { getPosts, getPostById, createPost };
