@@ -23,4 +23,21 @@ const getPostById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getPosts, getPostById };
+// @desc    Create new post
+// @route   POST /api/posts
+// @access  Private
+const createPost = asyncHandler(async (req, res) => {
+  req.body.user = req.user.id;
+
+  const post = await Post.create(req.body);
+
+  res.status(201).json({ success: true, data: post });
+
+  if (activity) {
+    const alreadyReviewed = activity.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+  }
+});
+
+export { getPosts, getPostById, createPost };
