@@ -31,6 +31,22 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    upvotePost: builder.mutation({
+      query: (postId) => ({
+        url: `${POSTS_URL}/${postId}/upvote`,
+        method: "PUT",
+        credentials: "include",
+      }),
+      invalidatesTags: ["Post"],
+    }),
+    downvotePost: builder.mutation({
+      query: (postId) => ({
+        url: `${POSTS_URL}/${postId}/downvote`,
+        method: "PUT",
+        credentials: "include", // include credentials if needed
+      }),
+      invalidatesTags: ["Post"],
+    }),
   }),
 });
 
@@ -39,4 +55,6 @@ export const {
   useGetPostDetailsQuery,
   useCreatePostMutation,
   useUploadPostImageMutation,
+  useUpvotePostMutation,
+  useDownvotePostMutation,
 } = postsApiSlice;
