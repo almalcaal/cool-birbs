@@ -7,15 +7,31 @@ import { toast } from "react-toastify";
 import Loader from "../../components/common/Loader.component.jsx";
 import FormContainer from "../../components/common/FormContainer.component.jsx";
 
+import { useCreatePostMutation } from "../../slices/postsApi.slice.js";
+
 const UploadPostScreen = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
 
+  const navigate = useNavigate();
+
+  const [createPost, { isLoading: loadingCreatePost }] =
+    useCreatePostMutation();
+
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    console.log("submitting");
+    if (window.confirm("Are you sure you want to upload this post?"));
+    try {
+      await createPost({
+        title,
+        content,
+      }).unwrap();
+      navigate("/");
+      toast.success("Post uploaded");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
