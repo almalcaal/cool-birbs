@@ -1,4 +1,4 @@
-import { POSTS_URL } from "../constants.js";
+import { POSTS_URL, UPLOAD_URL } from "../constants.js";
 import { apiSlice } from "./api.slice.js";
 
 export const postsApiSlice = apiSlice.injectEndpoints({
@@ -24,6 +24,13 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Post"],
     }),
+    uploadPostImage: builder.mutation({
+      query: (data) => ({
+        url: UPLOAD_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -31,4 +38,5 @@ export const {
   useGetPostsQuery,
   useGetPostDetailsQuery,
   useCreatePostMutation,
+  useUploadPostImageMutation,
 } = postsApiSlice;
