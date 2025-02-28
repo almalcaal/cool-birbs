@@ -92,7 +92,12 @@ const UploadPostScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" style={{ marginTop: "1rem" }}>
+        <Button
+          type="submit"
+          variant="primary"
+          style={{ marginTop: "1rem" }}
+          disabled={loadingUploadPost}
+        >
           Upload
         </Button>
       </Form>
