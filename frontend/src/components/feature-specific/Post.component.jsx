@@ -11,7 +11,11 @@ const Post = ({ post }) => {
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/posts/${post._id}`}>
-        <Card.Img src={post.image} variant="top" />
+        <Card.Img
+          src={post.image}
+          style={{ width: "100%", height: "185px", objectFit: "cover" }}
+          variant="top"
+        />
       </Link>
 
       <Card.Body>

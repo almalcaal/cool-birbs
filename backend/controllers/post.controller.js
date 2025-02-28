@@ -5,7 +5,7 @@ import Post from "../models/post.model.js";
 // @route       GET /api/posts
 // @access      Public
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).sort({ createdAt: -1 });
   res.json(posts);
 });
 
@@ -27,11 +27,19 @@ const getPostById = asyncHandler(async (req, res) => {
 // @route   POST /api/posts
 // @access  Private
 const createPost = asyncHandler(async (req, res) => {
-  req.body.user = req.user.id;
+  const { title, content, image } = req.body;
 
-  const post = await Post.create(req.body);
+  const post = await Post.create({
+    title,
+    content,
+    image,
+    user: req.user._id,
+  });
 
-  res.status(201).json({ success: true, data: post });
+  const createdPost = await post.save();
+
+  // res.send("create new post");
+  res.status(201).json(createdPost);
 });
 
 export { getPosts, getPostById, createPost };
