@@ -7,7 +7,14 @@ import {
   TiArrowUpThick,
 } from "react-icons/ti";
 
+import {
+  useUpvotePostMutation,
+  useDownvotePostMutation,
+} from "../../slices/postsApi.slice.js";
+
 const Post = ({ post }) => {
+  const [upvotePost] = useUpvotePostMutation();
+  const [downvotePost] = useDownvotePostMutation();
   // console.log("post");
   // console.log(post.username);
   // console.log("post");
@@ -35,18 +42,24 @@ const Post = ({ post }) => {
           }}
         >
           <Col md={1}>
-            <TiArrowDownOutline />
+            <TiArrowDownOutline
+              onClick={() => downvotePost(post._id)}
+              style={{ cursor: "pointer" }}
+            />
           </Col>
           <Col md={1}>
-            <TiArrowUpOutline />
+            <TiArrowUpOutline
+              onClick={() => upvotePost(post._id)}
+              style={{ cursor: "pointer" }}
+            />
           </Col>
-          <Col md={2} style={{ color: "red" }}>
+          {/* <Col md={2} style={{ color: "red" }}>
             <p>{post.votes.downvotes}</p>
           </Col>
           /
           <Col md={2} style={{ color: "green" }}>
             <p>{post.votes.upvotes}</p>
-          </Col>
+          </Col> */}
         </Row>
         <Card.Subtitle>@{post.username}</Card.Subtitle>
       </Card.Body>

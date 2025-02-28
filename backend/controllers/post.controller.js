@@ -47,4 +47,36 @@ const createPost = asyncHandler(async (req, res) => {
   res.status(201).json(createdPost);
 });
 
-export { getPosts, getPostById, createPost };
+// @desc    Update upvote
+// @route   PUT /api/posts/:id/upvote
+// @access  Private
+const updateUpvote = asyncHandler(async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { "votes.upvotes": 1 } },
+      { new: true }
+    );
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ error: "Upvote failed" });
+  }
+});
+
+// @desc    Update upvote
+// @route   PUT /api/posts/:id/upvote
+// @access  Private
+const updateDownvote = asyncHandler(async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { "votes.downvotes": 1 } },
+      { new: true }
+    );
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ error: "Downvote failed" });
+  }
+});
+
+export { getPosts, getPostById, createPost, updateUpvote, updateDownvote };
