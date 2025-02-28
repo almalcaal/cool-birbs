@@ -29,10 +29,15 @@ const getPostById = asyncHandler(async (req, res) => {
 const createPost = asyncHandler(async (req, res) => {
   const { title, content, image } = req.body;
 
+  // console.log("req.user");
+  // console.log(req.user);
+  // console.log("req.user");
+
   const post = await Post.create({
     title,
     content,
     image,
+    username: req.user.username,
     user: req.user._id,
   });
 

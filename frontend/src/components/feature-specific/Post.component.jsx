@@ -8,6 +8,9 @@ import {
 } from "react-icons/ti";
 
 const Post = ({ post }) => {
+  // console.log("post");
+  // console.log(post.username);
+  // console.log("post");
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/posts/${post._id}`}>
@@ -45,6 +48,7 @@ const Post = ({ post }) => {
             <p>{post.votes.upvotes}</p>
           </Col>
         </Row>
+        <Card.Subtitle>@{post.username}</Card.Subtitle>
       </Card.Body>
     </Card>
   );
